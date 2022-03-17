@@ -1,86 +1,194 @@
-html, body {
-	background-color: black;
-	color: white;
-	font-family: helvetica, arial, sans-serif;
-	font-size: 14px;
-	line-height: 1.5;
-	margin: 0;
-	padding: 0;
+@font-face {
+  font-family: 'Gilroy';
+  src: url('fonts/Gilroy-SemiBold.eot');
+  src: url('fonts/Gilroy-SemiBold.eot?#iefix') format('embedded-opentype'),
+    url('fonts/Gilroy-SemiBold.woff2') format('woff2'),
+    url('fonts/Gilroy-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
 
-.container {
-	margin: 0 auto;
-	max-width: 768px;
-	padding: 20px 5%;
+@font-face {
+  font-family: 'Gilroy';
+  src: url('Gilroy-Medium.eot');
+  src: url('fonts/Gilroy-Medium.eot?#iefix') format('embedded-opentype'),
+    url('fonts/Gilroy-Medium.woff2') format('woff2'),
+    url('fonts/Gilroy-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('fonts/Gilroy-Bold.eot');
+  src: url('fonts/Gilroy-Bold.eot?#iefix') format('embedded-opentype'),
+    url('fonts/Gilroy-Bold.woff2') format('woff2'),
+    url('fonts/Gilroy-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('fonts/Gilroy-Light.eot');
+  src: url('fonts/Gilroy-Light.eot?#iefix') format('embedded-opentype'),
+    url('fonts/Gilroy-Light.woff2') format('woff2'),
+    url('fonts/Gilroy-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('fonts/Gilroy-Regular.eot');
+  src: url('fonts/Gilroy-Regular.eot?#iefix') format('embedded-opentype'),
+    url('fonts/Gilroy-Regular.woff2') format('woff2'),
+    url('fonts/Gilroy-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+html,
+body {
+  background-image: url('./images/background2.png');
+  /* background-position: center; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #ddd;
+  color: black;
+  font-family: Gilroy, helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+/* .container {
+  margin: 0 auto;
+  max-width: 768px;
+  padding: 20px 5%;
 }
 
 section {
-	background-color: #171717;
+  background-color: #171717;
 }
 
-h1, h2 {
-	line-height: 1;
-	text-transform: uppercase;
+h1,
+h2 {
+  line-height: 1;
+  text-transform: uppercase;
 }
 
 h2 {
-	margin-top: 40px;
+  margin-top: 40px;
 }
 
 h2:first-of-type {
-	margin-top: 20px;
+  margin-top: 20px;
 }
 
 .logo {
-	display: block;
+  display: block;
 }
 
 img {
-	height: auto;
-	max-width: 100%;
+  height: auto;
+  max-width: 100%;
 }
 
 .logo img {
-	width: 500px;
+  width: 500px;
 }
 
 @media all and (max-width: 768px) {
-	.logo img {
-		width: 450px;
-	}
+  .logo img {
+    width: 450px;
+  }
 }
 
 @media all and (max-width: 479px) {
-	.logo img {
-		width: 350px;
-	}
+  .logo img {
+    width: 350px;
+  }
 }
 
 .icon.heart {
-	color: lightcoral;
+  color: lightcoral;
 }
 
 a {
-	color: aquamarine;
-	font-weight: bold;
+  color: aquamarine;
+  font-weight: bold;
 }
 
-a:hover, a:active {
-	color: mediumaquamarine;
+a:hover,
+a:active {
+  color: mediumaquamarine;
 }
 
 a code {
-	color: black;
+  color: black;
 }
 
 code {
-	background-color: aquamarine;
-	color: black;
-	font-family: monospace;
-	padding: 1px;
-	user-select: all;
+  background-color: aquamarine;
+  color: black;
+  font-family: monospace;
+  padding: 1px;
+  user-select: all;
 }
 
 code.image {
-	background-color: lightyellow;
+  background-color: lightyellow;
+} */
+
+h1 {
+  /* Header 1 */
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 80px;
+  line-height: 112px;
+
+  /* identical to box height, or 140% */
+  letter-spacing: -1.5px;
+
+  /* Colour/Text */
+  color: #333333;
+}
+
+h5 {
+  /* Header 5 */
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 24px;
+
+  /* identical to box height, or 100% */
+  letter-spacing: 0.18px;
+
+  /* Colour/Text */
+  color: #333333;
+}
+
+.Overline {
+  /* Overline */
+  font-family: 'Gilroy-Regular';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 16px;
+
+  /* identical to box height, or 160% */
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+
+  /* Colour/Text */
+  color: #333333;
 }

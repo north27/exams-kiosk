@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Exam Kiosk</title>
-    <link rel="canonical" href="https://examkiosk.com" />
+    <title>Exams Kiosk</title>
+    <link rel="canonical" href="https://exams-kiosk.north27.co.uk/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Icons and Colors -->
@@ -34,10 +34,7 @@
     <meta name="theme-color" content="#000000" />
 
     <!-- SEO and Social Sharing and SEO -->
-    <meta
-      name="description"
-      content="Exam Kiosk"
-    />
+    <meta name="description" content="Exam Kiosk" />
     <meta name="robots" content="noodp" />
     <meta name="author" content="North27" />
     <meta name="keywords" content="exam, kiosk" />
@@ -60,30 +57,130 @@
     <meta name="twitter:creator" content="@nicolemfurlan" />
 
     <!-- Styles -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="style.css" />
 
     <!-- Javscript -->
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker && navigator.serviceWorker.register('./sw.js')
+          navigator.serviceWorker &&
+            navigator.serviceWorker.register('./sw.js').then((reg) => {
+              reg.update()
+            })
         })
       }
     </script>
     <script defer src="./main.js"></script>
+    <style>
+      h1 {
+        margin: 0px;
+      }
+      h5 {
+        margin: 0px;
+      }
+      .Form {
+        /* Colour/Text/White */
+        background: #ffffff;
+        box-shadow: 6px 6px 15px rgba(51, 51, 51, 0.2);
+        border-radius: 40px;
+        border-color: #ffd96a;
+        border-style: solid;
+        border: 10px solid #ffd96a;
+        padding: 75px 105px 75px 105px;
+      }
+      .form-control {
+        /* Auto layout */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        /* Colour/Other/L.grey */
+        background: #f5f5f5;
+        border-radius: 10px;
+        margin: 4px 0px;
+        /* Subtitle 1 */
+        font-family: 'Gilroy';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.15px;
+
+        /* Colour/Text */
+        color: #333333;
+        border-radius: 10px;
+        padding: 16px 12px 14px 14px;
+        border: none;
+      }
+      .ButtonLogin {
+        background: #247ba0;
+        border: 1px solid #247ba0;
+        text-transform: uppercase;
+        color: white;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 14.5px 16px 14.5px 16px;
+        font-size: 17px;
+
+        /* Colour/Secondary */
+        background: #247ba0;
+        border-radius: 4px;
+      }
+      .form-floating:focus label {
+        color: #247ba0;
+      }
+    </style>
   </head>
 
   <body>
     <header>
-      <div class="container">
-        <h1>Exam Kiosk</h1>
+      <div class="container text-center" style="padding: 191px 0px 44px 0px;">
+        <h5>Welcome to</h5>
+        <h1>Exams Kiosk</h1>
       </div>
     </header>
 
     <section>
-      <div class="container"></div>
+      <div class="container">
+        <div class="Form" style="width: 660px; margin: 0 auto;">
+          <div class="form-floating" style="margin-top: 20px;">
+            <input class="form-control" placeholder="Enter Your Name" />
+            <label for="floatingInput">Enter Your Name</label>
+          </div>
+          <div class="form-floating" style="margin-top: 20px;">
+            <input class="form-control" placeholder="Exam Title / Code" />
+            <label for="floatingInput">Exam Title / Code</label>
+          </div>
+          <div class="form-floating" style="margin-top: 20px;">
+            <input class="form-control" placeholder="Candidate Number" />
+            <label for="floatingInput">Candidate Number</label>
+          </div>
+          <div class="form-group" style="margin-top: 40px;">
+            <button
+              class="btn btn-info btn-lg ButtonLogin"
+              style="margin: 0 auto;"
+            >
+              Start Exam
+            </button>
+          </div>
+          <div class="form-group" style="margin-top: 40px;">
+            <div class="Overline">
+              PRESS TO "START EXAM", YOU ARE GOING TO BE GREAT GOOD LUCK
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
+    <!--
     <footer>
       <div class="container">
         <p>
@@ -93,5 +190,6 @@
         </p>
       </div>
     </footer>
+    -->
   </body>
 </html>
