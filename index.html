@@ -63,20 +63,12 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
 
-    <!-- Javscript -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker &&
-            navigator.serviceWorker.register('./sw.js').then((reg) => {
-              reg.update()
-            })
-        })
-      }
-    </script>
-    <script defer src="./main.js"></script>
     <style>
       h1 {
         margin: 0px;
@@ -117,8 +109,15 @@
         border-radius: 10px;
         padding: 16px 12px 14px 14px;
         border: none;
+        box-shadow: none;
       }
-      .ButtonLogin {
+      .form-control:focus {
+        box-shadow: none;
+        border-bottom: 1px solid #247ba0;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+      }
+      #ButtonLogin {
         background: #247ba0;
         border: 1px solid #247ba0;
         text-transform: uppercase;
@@ -134,7 +133,16 @@
         background: #247ba0;
         border-radius: 4px;
       }
-      .form-floating:focus label {
+      #ButtonLogin:hover {
+        background-image: none;
+        background-color: #247ba0;
+        border: 1px solid #247ba0;
+        color: #f5f5f5;
+      }
+      .form-floating.focused label {
+        color: #247ba0;
+      }
+      .form-floating.filled label {
         color: #247ba0;
       }
     </style>
@@ -151,24 +159,48 @@
     <section>
       <div class="container">
         <div class="Form" style="width: 660px; margin: 0 auto;">
-          <div class="form-floating" style="margin-top: 20px;">
-            <input class="form-control" placeholder="Enter Your Name" />
+          <div class="form-group form-floating" style="margin-top: 20px;">
+            <input
+              id="CandidateName"
+              class="form-control"
+              placeholder="Enter Your Name"
+            />
             <label for="floatingInput">Enter Your Name</label>
           </div>
-          <div class="form-floating" style="margin-top: 20px;">
-            <input class="form-control" placeholder="Exam Title / Code" />
+          <div class="form-group form-floating" style="margin-top: 20px;">
+            <input
+              id="ExamTitle"
+              class="form-control"
+              placeholder="Exam Title / Code"
+            />
             <label for="floatingInput">Exam Title / Code</label>
           </div>
-          <div class="form-floating" style="margin-top: 20px;">
-            <input class="form-control" placeholder="Candidate Number" />
+          <div class="form-group form-floating" style="margin-top: 20px;">
+            <input
+              id="CandidateNumber"
+              class="form-control"
+              placeholder="Candidate Number"
+            />
             <label for="floatingInput">Candidate Number</label>
           </div>
           <div class="form-group" style="margin-top: 40px;">
             <button
-              class="btn btn-info btn-lg ButtonLogin"
+              id="ButtonLogin"
+              class="btn btn-lg"
               style="margin: 0 auto;"
+              onclick="startExam()"
             >
-              Start Exam
+              <span class="Loading" class="" style="display: none;">
+                <img
+                  class="Spin"
+                  src="images/icon-refresh.png"
+                  style="height: 24px; width: 24px;"
+                />
+                Loading ...
+              </span>
+              <span class="Regular">
+                Start Exam
+              </span>
             </button>
           </div>
           <div class="form-group" style="margin-top: 40px;">
@@ -180,16 +212,76 @@
       </div>
     </section>
 
-    <!--
-    <footer>
-      <div class="container">
-        <p>
-          Made with
-          <span class="icon heart" role="img" aria-label="Heart">&#x2764;</span>
-          by North27
-        </p>
-      </div>
-    </footer>
-    -->
+    <!-- Javscript -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker &&
+            navigator.serviceWorker.register('./sw.js').then((reg) => {
+              reg.update()
+            })
+        })
+      }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script defer src="./main.js"></script>
+
+    <script>
+      function startExam() {
+        const candidateName = $.trim($('#CandidateName').val())
+        const candidateNumber = $.trim($('#CandidateNumber').val())
+        const examTitle = $.trim($('#ExamTitle').val())
+
+        if (candidateName == '') {
+          return toastr.error('Candidate Name is required')
+        }
+        if (examTitle == '') {
+          return toastr.error('Candidate Name is required')
+        }
+        if (candidateNumber == '') {
+          return toastr.error('Candidate Name is required')
+        }
+        localStorage.setItem(
+          'exam',
+          JSON.stringify({
+            timeStarted: new Date().toISOString,
+            candidateName,
+            candidateNumber,
+            examTitle,
+          }),
+        )
+        buttonLoginStartSpinner()
+        setTimeout(() => {
+          location.href = '/exam.html'
+          buttonLoginStopSpinner()
+        }, 5000)
+      }
+      function buttonLoginStartSpinner() {
+        $('#ButtonLogin .Loading').show()
+        $('#ButtonLogin .Regular').hide()
+      }
+      function buttonLoginStopSpinner() {
+        $('#ButtonLogin .Loading').hide()
+        $('#ButtonLogin .Regular').show()
+      }
+
+      $(() => {
+        $('.form-control')
+          .on('blur', function (e) {
+            var parent = $(this).parents('.form-group')
+            parent.removeClass('focused')
+            if (this.value.length > 0) {
+              parent.addClass('filled')
+            }
+          })
+          .trigger('blur')
+        $('.form-control').on('focus', function (e) {
+          var parent = $(this).parents('.form-group')
+          parent.removeClass('filled')
+          parent.addClass('focused')
+        })
+      })
+    </script>
   </body>
 </html>
