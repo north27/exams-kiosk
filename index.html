@@ -145,72 +145,268 @@
       .form-floating.filled label {
         color: #247ba0;
       }
+      #Header {
+        padding: 20px 40px 20px 40px;
+      }
+      #Footer {
+        padding: 20px 40px 20px 40px;
+      }
+      #IconPerson {
+        width: 47px;
+        height: 47px;
+        cursor: pointer;
+      }
+      #IconInfo {
+        width: 47px;
+        height: 47px;
+        cursor: pointer;
+      }
+      #PanelAccessibilitySupport {
+        position: absolute;
+        top: 66px;
+        left: -326px;
+        width: 370px;
+        height: 374px;
+        filter: drop-shadow(6px 6px 30px rgba(51, 51, 51, 0.2));
+        padding: 20px 30px;
+        background: #ffffff;
+        box-shadow: 6px 6px 15px rgba(51, 51, 51, 0.2);
+        border-radius: 20px;
+        z-index: 1000;
+      }
+      #PanelAccessibilitySupport .body {
+        margin-top: 20px;
+      }
+      #PanelAccessibilitySupport .title {
+        font-family: 'Gilroy';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 25px;
+        line-height: 30px;
+
+        /* identical to box height */
+
+        /* Colour/Text */
+        color: #333333;
+      }
+      #PanelAccessibilitySupport .label {
+        text-align: left;
+        font-family: 'Gilroy';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 21px;
+
+        /* Colour/Text */
+        color: #333333;
+        padding: 10px 0px 10px 0px;
+      }
+      #PanelAccessibilitySupport .value {
+        text-align: left;
+        line-height: 21px;
+
+        padding: 7px 0px 7px 0px;
+      }
+
+      #PanelAccessibilitySupport .form-switch .form-check-input {
+        height: 25px;
+        width: 40px;
+      }
+
+      #PanelAccessibilitySupport .Color {
+        height: 30px;
+        width: 40px;
+      }
     </style>
   </head>
 
   <body>
-    <header>
-      <div class="container text-center" style="padding: 191px 0px 44px 0px;">
-        <h5>Welcome to</h5>
-        <h1>Exams Kiosk</h1>
-      </div>
-    </header>
+    <table style="width: 100%; height: 100%;">
+      <tr>
+        <td style="height: 1px;">
+          <div id="Header">
+            <span style="position: relative;" class="float-end">
+              <img
+                id="IconPerson"
+                src="/images/icon-person.png"
+                onclick="panelAccesibilitySupportToggle();"
+              />
 
-    <section>
-      <div class="container">
-        <div class="Form" style="width: 660px; margin: 0 auto;">
-          <div class="form-group form-floating" style="margin-top: 20px;">
-            <input
-              id="CandidateName"
-              class="form-control"
-              placeholder="Enter Your Name"
-            />
-            <label for="floatingInput">Enter Your Name</label>
+              <div id="PanelAccessibilitySupport">
+                <div class="title">
+                  Accessibility Support
+                </div>
+                <div class="body">
+                  <table style="width: 100%;">
+                    <tr>
+                      <td class="label">Larger Text</td>
+                      <td class="value">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            id="OptionLargerText"
+                          />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="label">Increase Contrast</td>
+                      <td class="value">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            id="OptionIncreaseContrast"
+                          />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="label">Reduce Motion</td>
+                      <td class="value">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            id="OptionReduceMotion"
+                          />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="label">On / Off Labels</td>
+                      <td class="value">
+                        <div class="form-check form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            id="OptionOnOffLabels"
+                          />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="label">Text Color</td>
+                      <td class="value">
+                        <input
+                          type="color"
+                          id="OptionTextColor"
+                          value="#000000"
+                          title="Choose text color"
+                          class="Color"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="label">Background Color</td>
+                      <td class="value">
+                        <input
+                          type="color"
+                          id="OptionBackgroundColor"
+                          value="#000000"
+                          title="Choose background color"
+                          class="Color"
+                        />
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </span>
           </div>
-          <div class="form-group form-floating" style="margin-top: 20px;">
-            <input
-              id="ExamTitle"
-              class="form-control"
-              placeholder="Exam Title / Code"
-            />
-            <label for="floatingInput">Exam Title / Code</label>
-          </div>
-          <div class="form-group form-floating" style="margin-top: 20px;">
-            <input
-              id="CandidateNumber"
-              class="form-control"
-              placeholder="Candidate Number"
-            />
-            <label for="floatingInput">Candidate Number</label>
-          </div>
-          <div class="form-group" style="margin-top: 40px;">
-            <button
-              id="ButtonLogin"
-              class="btn btn-lg"
-              style="margin: 0 auto;"
-              onclick="startExam()"
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div id="Body">
+            <div
+              class="container text-center"
+              style="padding: 44px 0px 44px 0px;"
             >
-              <span class="Loading" class="" style="display: none;">
-                <img
-                  class="Spin"
-                  src="images/icon-refresh.png"
-                  style="height: 24px; width: 24px;"
-                />
-                Loading ...
-              </span>
-              <span class="Regular">
-                Start Exam
-              </span>
-            </button>
-          </div>
-          <div class="form-group" style="margin-top: 40px;">
-            <div class="Overline">
-              PRESS TO "START EXAM", YOU ARE GOING TO BE GREAT GOOD LUCK
+              <h5>Welcome to</h5>
+              <h1>Exams Kiosk</h1>
             </div>
+
+            <section>
+              <div class="container">
+                <div class="Form" style="width: 660px; margin: 0 auto;">
+                  <div
+                    class="form-group form-floating"
+                    style="margin-top: 20px;"
+                  >
+                    <input
+                      id="CandidateName"
+                      class="form-control"
+                      placeholder="Enter Your Name"
+                    />
+                    <label for="floatingInput">Enter Your Name</label>
+                  </div>
+                  <div
+                    class="form-group form-floating"
+                    style="margin-top: 20px;"
+                  >
+                    <input
+                      id="ExamTitle"
+                      class="form-control"
+                      placeholder="Exam Title / Code"
+                    />
+                    <label for="floatingInput">Exam Title / Code</label>
+                  </div>
+                  <div
+                    class="form-group form-floating"
+                    style="margin-top: 20px;"
+                  >
+                    <input
+                      id="CandidateNumber"
+                      class="form-control"
+                      placeholder="Candidate Number"
+                    />
+                    <label for="floatingInput">Candidate Number</label>
+                  </div>
+                  <div class="form-group" style="margin-top: 40px;">
+                    <button
+                      id="ButtonLogin"
+                      class="btn btn-lg"
+                      style="margin: 0 auto;"
+                      onclick="startExam()"
+                    >
+                      <span class="Loading" class="" style="display: none;">
+                        <img
+                          class="Spin"
+                          src="images/icon-refresh.png"
+                          style="height: 24px; width: 24px;"
+                        />
+                        Loading ...
+                      </span>
+                      <span class="Regular">
+                        Start Exam
+                      </span>
+                    </button>
+                  </div>
+                  <div class="form-group" style="margin-top: 40px;">
+                    <div class="Overline">
+                      PRESS TO "START EXAM", YOU ARE GOING TO BE GREAT GOOD LUCK
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
-        </div>
-      </div>
-    </section>
+        </td>
+      </tr>
+      <tr>
+        <td style="height: 1px;">
+          <div id="Footer">
+            <img id="IconInfo" src="/images/icon-info.png" class="float-end" />
+          </div>
+        </td>
+      </tr>
+    </table>
 
     <!-- Javscript -->
     <script>
@@ -228,6 +424,10 @@
     <script defer src="./main.js"></script>
 
     <script>
+      function panelAccesibilitySupportToggle() {
+        $('#PanelAccessibilitySupport').toggle()
+      }
+
       function startExam() {
         const candidateName = $.trim($('#CandidateName').val())
         const candidateNumber = $.trim($('#CandidateNumber').val())
