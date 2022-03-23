@@ -74,7 +74,7 @@
         margin: 0px;
       }
       h5 {
-        margin: 0px;
+        margin: -20px;
       }
       .Form {
         /* Colour/Text/White */
@@ -84,7 +84,7 @@
         border-color: #ffd96a;
         border-style: solid;
         border: 10px solid #ffd96a;
-        padding: 75px 105px 75px 105px;
+        padding: 75px 105px 30px 105px;
       }
       .form-control {
         /* Auto layout */
@@ -150,6 +150,7 @@
       }
       #Footer {
         padding: 20px 40px 20px 40px;
+        line-height: 40px;
       }
       #IconPerson {
         width: 47px;
@@ -217,6 +218,81 @@
         height: 30px;
         width: 40px;
       }
+      #LanguageDropdown {
+        font-family: 'Gilroy';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 24px;
+
+        /* identical to box height, or 100% */
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.18px;
+
+        /* Colour/Text */
+        color: #333333;
+
+        /* Colour/Primary */
+        background: #ffd96a;
+        box-shadow: inset 0px -4px 4px #ffe8a5,
+          inset 0px 4px 4px rgba(51, 51, 51, 0.2);
+        border-radius: 50px;
+
+        padding: 5px;
+      }
+      #LanguageDropdown #IconLanguage {
+        width: 37px;
+        height: 37px;
+      }
+
+      #PanelHelp {
+        position: absolute;
+        top: -280px;
+        left: -326px;
+        width: 370px;
+        height: 260px;
+        filter: drop-shadow(6px 6px 30px rgba(51, 51, 51, 0.2));
+        padding: 20px 30px;
+        background: #ffffff;
+        box-shadow: 6px 6px 15px rgba(51, 51, 51, 0.2);
+        border-radius: 20px;
+        z-index: 1000;
+      }
+
+      #PanelHelp .body {
+        margin-top: 20px;
+      }
+      #PanelHelp .title {
+        font-family: 'Gilroy';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 25px;
+        line-height: 30px;
+
+        /* identical to box height */
+
+        /* Colour/Text */
+        color: #333333;
+      }
+      #PanelHelp .label {
+        text-align: left;
+        font-family: 'Gilroy';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 21px;
+
+        /* Colour/Text */
+        color: #333333;
+        padding: 10px 0px 10px 0px;
+      }
+      #PanelHelp .value {
+        text-align: left;
+        line-height: 21px;
+
+        padding: 7px 0px 7px 0px;
+      }
     </style>
   </head>
 
@@ -225,16 +301,28 @@
       <tr>
         <td style="height: 1px;">
           <div id="Header">
-            <span style="position: relative;" class="float-end">
+            <!-- START: Accessibility -->
+            <span
+              style="position: relative; margin-left: 10px;"
+              class="float-end"
+            >
               <img
                 id="IconPerson"
                 src="/images/icon-person.png"
                 onclick="panelAccesibilitySupportToggle();"
               />
 
-              <div id="PanelAccessibilitySupport">
+              <div id="PanelAccessibilitySupport" style="display: none;">
                 <div class="title">
                   Accessibility Support
+
+                  <span
+                    class="float-end"
+                    onclick="panelAccesibilitySupportToggle()"
+                    style="cursor: pointer;"
+                  >
+                    &times;
+                  </span>
                 </div>
                 <div class="body">
                   <table style="width: 100%;">
@@ -318,6 +406,21 @@
                 </div>
               </div>
             </span>
+            <!-- END: Accessibility -->
+
+            <!-- START: Language -->
+            <span style="position: relative;" class="float-end">
+              <div id="LanguageDropdown">
+                <img src="/images/icon-english.png" id="IconLanguage" />
+                <span style="margin-left: 5px;">
+                  En
+                </span>
+                <span style="margin-left: 5px;">
+                  &#9207;
+                </span>
+              </div>
+            </span>
+            <!-- END: Language -->
           </div>
         </td>
       </tr>
@@ -402,7 +505,88 @@
       <tr>
         <td style="height: 1px;">
           <div id="Footer">
-            <img id="IconInfo" src="/images/icon-info.png" class="float-end" />
+            &nbsp;
+            <!-- START: Help -->
+            <span class="float-end" style="position: relative;">
+              <img
+                id="IconInfo"
+                src="/images/icon-info.png"
+                onclick="panelHelpToggle()"
+              />
+              <div id="PanelHelp" style="display: none;">
+                <div class="title">
+                  Information
+                  <span
+                    class="float-end"
+                    onclick="panelHelpToggle()"
+                    style="cursor: pointer;"
+                  >
+                    &times;
+                  </span>
+                </div>
+                <div class="body">
+                  <table style="width: 100%;">
+                    <tr>
+                      <td class="label">
+                        <a
+                          href="https://www.north27.co.uk/development/exam-kiosk/how-to-use"
+                          target="_blank"
+                        >
+                          How to use
+                        </a>
+                      </td>
+                      <td class="value">
+                        <a
+                          href="https://www.north27.co.uk/development/exam-kiosk/how-to-use"
+                          target="_blank"
+                        >
+                          <img src="/images/icon-send.png" />
+                        </a>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td class="label">
+                        <a
+                          href="https://www.north27.co.uk/development/exam-kiosk/acknowledgement"
+                          target="_blank"
+                        >
+                          Acknowledgement
+                        </a>
+                      </td>
+                      <td class="value">
+                        <a
+                          href="https://www.north27.co.uk/development/exam-kiosk/how-to-use"
+                          target="_blank"
+                        >
+                          <img src="/images/icon-send.png" />
+                        </a>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td class="label">
+                        <a
+                          href="https://www.north27.co.uk/development/exam-kiosk/acknowledgement"
+                          target="_blank"
+                        >
+                          Privacy
+                        </a>
+                      </td>
+                      <td class="value">
+                        <a
+                          href="https://www.north27.co.uk/development/exam-kiosk/privacy"
+                          target="_blank"
+                        >
+                          <img src="/images/icon-send.png" />
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </span>
+            <!-- END: Help -->
           </div>
         </td>
       </tr>
@@ -426,6 +610,10 @@
     <script>
       function panelAccesibilitySupportToggle() {
         $('#PanelAccessibilitySupport').toggle()
+      }
+
+      function panelHelpToggle() {
+        $('#PanelHelp').toggle()
       }
 
       function startExam() {
@@ -455,7 +643,7 @@
         setTimeout(() => {
           location.href = '/exam.html'
           buttonLoginStopSpinner()
-        }, 5000)
+        }, 2000)
       }
       function buttonLoginStartSpinner() {
         $('#ButtonLogin .Loading').show()
