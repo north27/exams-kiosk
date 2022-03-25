@@ -1,6 +1,6 @@
 {
-    "name": "Exam Kiosk",
-    "short_name": "Exam Kiosk",
+    "name": "Exams Kiosk",
+    "short_name": "Exams Kiosk",
     "display": "standalone",
     "start_url": "./?utm_source=pwa_install",
     "scope": ".",

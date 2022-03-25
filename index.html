@@ -34,24 +34,24 @@
     <meta name="theme-color" content="#000000" />
 
     <!-- SEO and Social Sharing and SEO -->
-    <meta name="description" content="Exam Kiosk" />
+    <meta name="description" content="Exams Kiosk" />
     <meta name="robots" content="noodp" />
     <meta name="author" content="North27" />
     <meta name="keywords" content="exam, kiosk" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Exam Kiosk" />
-    <meta property="og:description" content="Exam Kiosk" />
+    <meta property="og:title" content="Exams Kiosk" />
+    <meta property="og:description" content="Exams Kiosk" />
     <meta property="og:url" content="https://examkiosk.com" />
-    <meta property="og:site_name" content="Exam Kiosk" />
+    <meta property="og:site_name" content="Exams Kiosk" />
     <meta
       property="section:publisher"
       content="https://www.facebook.com/examkiosk/"
     />
     <meta property="og:image" content="https://examkiosk.com/share.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Exam Kiosk" />
-    <meta name="twitter:description" content="Exam Kiosk" />
+    <meta name="twitter:title" content="Exams Kiosk" />
+    <meta name="twitter:description" content="Exams Kiosk" />
     <meta name="twitter:site" content="@examkiosk" />
     <meta name="twitter:image" content="https://examkiosk.com/share.jpg" />
     <meta name="twitter:creator" content="@nicolemfurlan" />
@@ -529,7 +529,7 @@
                     <tr>
                       <td class="label">
                         <a
-                          href="https://www.north27.co.uk/development/exam-kiosk/how-to-use"
+                          href="https://www.north27.co.uk/exams-kiosk/how-to-use"
                           target="_blank"
                         >
                           How to use
@@ -537,7 +537,7 @@
                       </td>
                       <td class="value">
                         <a
-                          href="https://www.north27.co.uk/development/exam-kiosk/how-to-use"
+                          href="https://www.north27.co.uk/exams-kiosk/how-to-use"
                           target="_blank"
                         >
                           <img src="/images/icon-send.png" />
@@ -630,12 +630,25 @@
         if (candidateNumber == '') {
           return toastr.error('Candidate Name is required')
         }
+        const startTime = new Date().toISOString()
+        const examUID = startTime
+          .split('T')
+          .join('')
+          .split('Z')
+          .join('')
+          .split('-')
+          .join('')
+          .split(':')
+          .join('')
+          .split('.')
+          .join('')
         localStorage.setItem(
           'exam',
           JSON.stringify({
-            timeStarted: new Date().toISOString,
+            timeStarted: startTime,
             candidateName,
             candidateNumber,
+            examUID,
             examTitle,
           }),
         )

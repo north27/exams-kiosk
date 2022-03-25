@@ -34,24 +34,24 @@
     <meta name="theme-color" content="#000000" />
 
     <!-- SEO and Social Sharing and SEO -->
-    <meta name="description" content="Exam Kiosk" />
+    <meta name="description" content="Exams Kiosk" />
     <meta name="robots" content="noodp" />
     <meta name="author" content="North27" />
     <meta name="keywords" content="exam, kiosk" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Exam Kiosk" />
-    <meta property="og:description" content="Exam Kiosk" />
-    <meta property="og:url" content="https://examkiosk.com" />
-    <meta property="og:site_name" content="Exam Kiosk" />
+    <meta property="og:title" content="Exams Kiosk" />
+    <meta property="og:description" content="Exams Kiosk" />
+    <meta property="og:url" content="https://examskiosk.com" />
+    <meta property="og:site_name" content="Exams Kiosk" />
     <meta
       property="section:publisher"
       content="https://www.facebook.com/examkiosk/"
     />
     <meta property="og:image" content="https://examkiosk.com/share.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Exam Kiosk" />
-    <meta name="twitter:description" content="Exam Kiosk" />
+    <meta name="twitter:title" content="Exams Kiosk" />
+    <meta name="twitter:description" content="Exams Kiosk" />
     <meta name="twitter:site" content="@examkiosk" />
     <meta name="twitter:image" content="https://examkiosk.com/share.jpg" />
     <meta name="twitter:creator" content="@nicolemfurlan" />
@@ -260,10 +260,18 @@
                 page
               </div>
               <div class="col-sm-4">
-                <button id="ButtonPrint" class="float-end">
+                <button
+                  id="ButtonPrint"
+                  class="float-end"
+                  onclick="printExam();"
+                >
                   PRINT
                 </button>
-                <button id="ButtonSaveToPdf" class="float-end">
+                <button
+                  id="ButtonSaveToPdf"
+                  class="float-end"
+                  onclick="saveExamToPdf()"
+                >
                   SAVE TO PDF
                 </button>
               </div>
@@ -272,9 +280,18 @@
         </td>
       </tr>
     </table>
+    <div id="PDF"></div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+      integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+
     <script defer src="./main.js"></script>
     <script>
       $(() => {
@@ -326,6 +343,75 @@
         if (str === null || str === '') return false
         else str = str.toString()
         return str.replace(/(<([^>]+)>)/gi, '')
+      }
+
+      let mywindow = null
+      function printExam() {
+        if (mywindow !== null) {
+          mywindow.close()
+        }
+
+        mywindow = window.open('', 'label_print', 'height=540,width=540')
+        mywindow.document.innerHTML = ''
+        mywindow.document.write(
+          '<html><head><title>Print Preview - Exam</title>',
+        )
+        mywindow.document.write('<style>')
+
+        // css +=
+        // '@media print{.no-print, .no-print *{display: none !important;} }'
+        // mywindow.document.write(css)
+        mywindow.document.write('</style>')
+        mywindow.document.write('</head><body>')
+        mywindow.document.write('<div class="no-print" style="padding:5px;">')
+        mywindow.document.write(
+          '<button onclick="window.print();window.close();">Print</button>',
+        )
+        mywindow.document.write('</div>')
+        mywindow.document.write(examToHtml())
+        mywindow.document.write('</body></html>')
+        mywindow.print()
+        mywindow.close()
+        return true
+      }
+
+      function saveExamToPdf() {
+        const data = JSON.parse(localStorage.getItem('exam'))
+        const candidateName = data.candidateName
+        const candidateNumber = data.candidateNumber
+        const examTitle = data.examTitle
+        const examUID = data.examUID
+
+        var element = document.getElementById('PDF')
+        element.innerHTML = examToHtml()
+
+        var opt = {
+          margin: 1,
+          filename: 'Exam_' + examUID + '.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2 },
+          jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+        }
+        html2pdf(element, opt)
+      }
+
+      function examToHtml() {
+        const data = JSON.parse(localStorage.getItem('exam'))
+        const candidateName = data.candidateName
+        const candidateNumber = data.candidateNumber
+        const examTitle = data.examTitle
+        //const examUID = data.examUID
+        const examText = $('#summernote').summernote('code')
+
+        let html = ''
+        html += '<div><h3>Candidate Name:</h3> ' + candidateName + '</div>'
+        html += '<div><h3>Candidate Number:</h3> ' + candidateNumber + '</div>'
+        //html += '<div><h3>Exam UID:</h3> ' + examUID + '</div>'
+        html += '<div><h3>Exam Title:</h3> ' + examTitle + '</div>'
+        html += '<hr />'
+        html += examText //document.getElementById('printer').innerHTML
+
+        return html
       }
     </script>
   </body>
