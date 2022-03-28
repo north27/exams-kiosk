@@ -17,17 +17,17 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="./favicon-32x32.png"
+      href="./images/favicon-32x32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="./favicon-16x16.png"
+      href="./images/favicon-16x16.png"
     />
     <link rel="manifest" href="./manifest.json" />
     <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#000000" />
-    <link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="shortcut icon" href="./images/favicon-16x16.png" />
     <meta name="msapplication-TileColor" content="#000000" />
     <meta name="msapplication-TileImage" content="./mstile-144x144.png" />
     <meta name="msapplication-config" content="./browserconfig.xml" />
@@ -667,6 +667,17 @@
         $('#ButtonLogin .Regular').show()
       }
 
+      function tryRecover() {
+        const data = JSON.parse(localStorage.getItem('exam'))
+        const candidateName = data.candidateName
+        const candidateNumber = data.candidateNumber
+        const examTitle = data.examTitle
+
+        if (candidateName != '' && examTitle != '' && candidateNumber != '') {
+          window.location.href = './exam.html'
+        }
+      }
+
       $(() => {
         $('.form-control')
           .on('blur', function (e) {
@@ -682,6 +693,7 @@
           parent.removeClass('filled')
           parent.addClass('focused')
         })
+        tryRecover()
       })
     </script>
   </body>

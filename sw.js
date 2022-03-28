@@ -1,4 +1,5 @@
-const cacheName = 'cache' + new Date().getMilliseconds() // Change value to force update
+const cacheName = 'cache_exam' // Change value to force update
+//const cacheName = 'cache' + new Date().getMilliseconds() // Change value to force update (while developing only)
 
 self.addEventListener('install', (event) => {
   // Kick out the old service worker

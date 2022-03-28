@@ -17,17 +17,17 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="./favicon-32x32.png"
+      href="./images/favicon-32x32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="./favicon-16x16.png"
+      href="./images/favicon-16x16.png"
     />
     <link rel="manifest" href="./manifest.json" />
     <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#000000" />
-    <link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="shortcut icon" href="./images/favicon-16x16.png" />
     <meta name="msapplication-TileColor" content="#000000" />
     <meta name="msapplication-TileImage" content="./mstile-144x144.png" />
     <meta name="msapplication-config" content="./browserconfig.xml" />
@@ -120,8 +120,8 @@
         color: #333333;
       }
       #IconInfo {
-        width: 22px;
-        height: 22px;
+        width: 32px;
+        height: 32px;
       }
       #ButtonSaveToPdf {
         border: 3px solid #247ba0;
@@ -191,59 +191,7 @@
       <tr>
         <td style="vertical-align: top;">
           <div id="Body">
-            <div id="summernote">
-              <h1>A Review "Of Mice and Men"</h1>
-              <h2>Introduction</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Curabitur massa dui, finibus ac risus in, iaculis semper justo.
-                Orci varius natoque penatibus et magnis dis parturient montes,
-                nascetur ridiculus mus. Etiam gravida augue ac dolor mollis,
-                sagittis porta dui mollis. Integer lorem libero, vestibulum non
-                quam non, porta sollicitudin dui. Quisque dignissim lectus at
-                varius mattis. Nunc a arcu id velit bibendum convallis ac vel
-                mi. Interdum et malesuada fames ac ante ipsum primis in
-                faucibus. Etiam quis sapien ligula. Nulla dictum nisl risus,
-                vitae condimentum mauris rutrum eu. Phasellus in massa ut nisl
-                tincidunt pulvinar. In semper justo eu urna bibendum porta.
-                Integer leo mi, sodales quis venenatis eu, congue at quam.
-                Aenean vehicula bibendum neque, at luctus sem pellentesque at.
-                Integer turpis felis, commodo at eleifend et, feugiat eu dolor.
-                Proin finibus dolor sed faucibus pharetra. In ultrices interdum
-                turpis, et scelerisque eros vulputate in.
-              </p>
-              <h2>Main Themes</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Curabitur massa dui, finibus ac risus in, iaculis semper justo.
-                Orci varius natoque penatibus et magnis dis parturient montes,
-                nascetur ridiculus mus. Etiam gravida augue ac dolor mollis,
-                sagittis porta dui mollis. Integer lorem libero, vestibulum non
-                quam non, porta sollicitudin dui. Quisque dignissim lectus at
-                varius mattis. Nunc a arcu id velit bibendum convallis ac vel
-                mi. Interdum et malesuada fames ac ante ipsum primis in
-                faucibus. Etiam quis sapien ligula. Nulla dictum nisl risus,
-                vitae condimentum mauris rutrum eu. Phasellus in massa ut nisl
-                tincidunt pulvinar. In semper justo eu urna bibendum porta.
-                Integer leo mi, sodales quis venenatis eu, congue at quam.
-                Aenean vehicula bibendum neque, at luctus sem pellentesque at.
-                Integer turpis felis, commodo at eleifend et, feugiat eu dolor.
-                Proin finibus dolor sed faucibus pharetra. In ultrices interdum
-                turpis, et scelerisque eros vulputate in.
-              </p>
-              <p>
-                Curabitur vulputate massa id orci ultricies, non mollis magna
-                auctor. Vestibulum id aliquam est. Aenean luctus nibh porttitor
-                urna faucibus, nec blandit felis auctor. Ut elementum risus eget
-                convallis eleifend. Etiam eget ligula non risus elementum
-                rutrum. Phasellus et risus lectus. Maecenas tempor ligula sed
-                finibus finibus. In hac habitasse platea dictumst. Orci varius
-                natoque penatibus et magnis dis parturient montes, nascetur
-                ridiculus mus. Quisque dictum id ligula eu molestie. Integer
-                placerat tempus orci feugiat commodo. Integer vehicula nec ante
-                posuere iaculis. In quis malesuada massa.
-              </p>
-            </div>
+            <div id="summernote"></div>
           </div>
         </td>
       </tr>
@@ -280,8 +228,55 @@
         </td>
       </tr>
     </table>
+    <div id="ModalExamEnd" class="modal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Complete Exam</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              If you have you completed the exam click the "Complete exam"
+              button below?
+            </p>
+            <p class="text-warning">
+              Note! Please make sure you have saved your exam, before completing
+              the exam
+            </p>
+          </div>
+          <div class="modal-footer" style="display: table;">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close and Continue
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary float-end"
+              onclick="examEnd()"
+            >
+              Complete Exam
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div id="PDF"></div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <script
@@ -372,6 +367,11 @@
         mywindow.document.write('</body></html>')
         mywindow.print()
         mywindow.close()
+
+        setTimeout(() => {
+          openModalExamEnd()
+        }, 5000)
+
         return true
       }
 
@@ -397,6 +397,10 @@
         setTimeout(() => {
           element.innerHTML = ''
         }, 2000)
+
+        setTimeout(() => {
+          openModalExamEnd()
+        }, 5000)
       }
 
       function examToHtml() {
@@ -416,6 +420,19 @@
         html += examText //document.getElementById('printer').innerHTML
 
         return html
+      }
+
+      function openModalExamEnd() {
+        var examEnd = new bootstrap.Modal(
+          document.getElementById('ModalExamEnd'),
+          {},
+        )
+        examEnd.show()
+      }
+
+      function examEnd() {
+        localStorage.removeItem('exam')
+        window.location.href = '/'
       }
     </script>
   </body>
