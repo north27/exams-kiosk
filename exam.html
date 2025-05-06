@@ -373,6 +373,15 @@
       function removeTags(str) {
         if (str === null || str === '') return false
         else str = str.toString()
+        
+        // Replace common HTML block/break elements with newlines before removing all tags
+        str = str.replace(/<br\s*\/?>/gi, '\n')
+               .replace(/<p\s*\/?>/gi, '\n')
+               .replace(/<\/p>/gi, '\n')
+               .replace(/<div\s*\/?>/gi, '\n')
+               .replace(/<\/div>/gi, '\n')
+        
+        // Then remove all remaining HTML tags
         return str.replace(/(<([^>]+)>)/gi, '')
       }
 
