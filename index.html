@@ -604,7 +604,7 @@
       }
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script defer src="./main.js"></script>
 
     <script>
@@ -622,13 +622,13 @@
         const examTitle = $.trim($('#ExamTitle').val())
 
         if (candidateName == '') {
-          return toastr.error('Candidate Name is required')
+          return toastr.error('Please enter your name')
         }
         if (examTitle == '') {
-          return toastr.error('Candidate Name is required')
+          return toastr.error('Please enter the exam title or code')
         }
         if (candidateNumber == '') {
-          return toastr.error('Candidate Name is required')
+          return toastr.error('Please enter the candidate number')
         }
         const startTime = new Date().toISOString()
         const examUID = startTime
@@ -669,10 +669,12 @@
 
       function tryRecover() {
         const data = JSON.parse(localStorage.getItem('exam'))
-        const candidateName = data.candidateName
-        const candidateNumber = data.candidateNumber
-        const examTitle = data.examTitle
-
+        if (!data) return
+        
+        const candidateName = data?.candidateName
+        const candidateNumber = data?.candidateNumber
+        const examTitle = data?.examTitle
+      
         if (candidateName != '' && examTitle != '' && candidateNumber != '') {
           window.location.href = './exam.html'
         }
